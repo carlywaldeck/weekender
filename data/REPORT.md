@@ -83,7 +83,7 @@ Agreement = share of cities where the hand-picked tag and the data (top 40% of c
 | lgbtq | 61% | – | Barcelona, Madrid, Lisbon, Porto, Paris |
 | games | 60% | – | Barcelona, Madrid, Seville, Lisbon, Porto |
 | students | 59% | – | Barcelona, Madrid, Seville, Lisbon, Paris |
-| offbeat | 62% | Bologna, Ljubljana, Gdańsk, Riga, Sofia | Granada, Dubrovnik, Split, Valletta, Palma de Mallorca |
+| offbeat | 63% | Bologna, Ljubljana, Gdańsk, Riga, Sofia | Granada, Dubrovnik, Split, Valletta, Palma de Mallorca |
 
 ## Coverage
 
@@ -95,14 +95,14 @@ Agreement = share of cities where the hand-picked tag and the data (top 40% of c
 
 ## Flight fares and the flight price model
 
-- Real round-trip fares (Travelpayouts / Aviasales, fetched 2026-11-02): **37461** route-months on **10127** routes, each the median of up to 5 weekly snapshots (5 so far)
-- Models: ridge regression on log(fare), trained on 30522 fares. "New route": 11 features (log distance, log distance², demand at destination that month, demand at home that month, destination price level, destination popularity, home popularity, how cheap flights from this airport are, how cheap flights to this airport are, how cheap this month is, short hop (< 500 km)). "Known route" adds: this route in other months, has other months, the reverse route, has reverse route
+- Real round-trip fares (Travelpayouts / Aviasales, fetched 2026-11-02): **37417** route-months on **10117** routes, each the median of up to 5 weekly snapshots (5 so far)
+- Models: ridge regression on log(fare), trained on 30487 fares. "New route": 11 features (log distance, log distance², demand at destination that month, demand at home that month, destination price level, destination popularity, home popularity, how cheap flights from this airport are, how cheap flights to this airport are, how cheap this month is, short hop (< 500 km)). "Known route" adds: this route in other months, has other months, the reverse route, has reverse route
 
 | Test | Typical error | Average error |
 |---|---|---|
-| New-route model, 1589 routes it never saw | **22%** | 32% |
-| Old distance formula, same routes | 34% | 39% |
+| New-route model, 1587 routes it never saw | **22%** | 31% |
+| Old distance formula, same routes | 34% | 38% |
 | Missing month: reverse route's real fare that month (2544 cases) | **15%** | 25% |
-| Missing month: known-route model (3329 cases) | **19%** | 25% |
-| **All flight prices people see** (23% real fares, 7% reverse, 40% known-route model, 30% new-route model) | **14%** | 22% |
+| Missing month: known-route model (3326 cases) | **19%** | 25% |
+| **All flight prices people see** (23% real fares, 7% reverse, 40% known-route model, 30% new-route model) | **14%** | 21% |
 
